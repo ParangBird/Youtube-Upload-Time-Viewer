@@ -41,7 +41,7 @@ function getURLParams(url) {
 
 function getData(url) {
     const YOUTUBE_VIDEO_ID = getURLParams(url).v;
-    const YOUTUBE_API_KEY = "AIzaSyA0Jgjrxy5iaN-v2TiDk5NAKsZdfnJJtYs";
+    const YOUTUBE_API_KEY = "YOUR_API_KEY";
 
     fetch(
         `https://www.googleapis.com/youtube/v3/videos?id=${YOUTUBE_VIDEO_ID}&key=${YOUTUBE_API_KEY}&part=snippet,statistics&fields=items(id,snippet,statistics)`
