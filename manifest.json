@@ -1,6 +1,6 @@
 {
-    "name": "My Extension",
-    "description": "...",
+    "name": "Youtube-Upload-Time-Viewer",
+    "description": "This is a Chrome extension application that shows you video's correct upload time in your local timezone.",
     "version": "1.0",
     "manifest_version": 3,
     "background": {
