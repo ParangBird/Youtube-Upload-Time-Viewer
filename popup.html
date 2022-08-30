@@ -5,9 +5,10 @@
         <link rel="stylesheet" href="popup.css" />
     </head>
     <body>
-        <h1>Upload time :</h1>
-        <select name="timeZone">
-            <option timeZoneId="0">(Default) Your Local TimeZone</option>
+        <h1 id="upload-time">Upload time :</h1>
+        <h2 id="now-timezone"> Now TimeZone : </h2>
+        <select name="timeZone" id="selectBox">
+            <option timeZoneId="0" value="0">(Default) Your Local TimeZone</option>
 
             <option
                 timeZoneId="1"

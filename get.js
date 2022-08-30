@@ -14,7 +14,7 @@ function formatting(date, offsetHours) {
     //   2020-08-29T06:23:09Z
     //-> 2020. 08. 29. 06:23:09
     const dateDate = new Date(date);
-    dateDate.setHours(dateDate.getHours() + offsetHours);
+    dateDate.setHours(dateDate.getHours() + 0);
 
     const yy = dateDate.getFullYear();
     const mm = dateDate.getMonth() + 1;
@@ -41,7 +41,7 @@ function getURLParams(url) {
 
 function getData(url) {
     const YOUTUBE_VIDEO_ID = getURLParams(url).v;
-    const YOUTUBE_API_KEY = "YOUR_API_KEY";
+    const YOUTUBE_API_KEY = "";
 
     fetch(
         `https://www.googleapis.com/youtube/v3/videos?id=${YOUTUBE_VIDEO_ID}&key=${YOUTUBE_API_KEY}&part=snippet,statistics&fields=items(id,snippet,statistics)`
@@ -49,8 +49,15 @@ function getData(url) {
         .then((response) => response.json())
         .then((data) => {
             let date = data.items[0].snippet.publishedAt;
-            document.querySelector(
-                "#info-strings yt-formatted-string"
-            ).innerText = formatting(date, 0);
+            chrome.storage.local.get((data) => {
+                let offset = data.offset;
+                let formattedDate = formatting(date, offset);
+                document.getElementsByClassName('yt-formatted-string bold')[2]
+                .innerText = formattedDate;
+    
+                chrome.storage.local.set({
+                    date : formattedDate
+                });
+            });
         });
 }
